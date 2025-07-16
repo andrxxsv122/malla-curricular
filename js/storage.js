@@ -20,6 +20,7 @@ function guardarRamoLS() {
     localStorage.setItem('estadoRamos', JSON.stringify(ramos));
 }
 
+
 function restaurarRamosLS() {
     const data = JSON.parse(localStorage.getItem('estadoRamos') || '[]');
 
