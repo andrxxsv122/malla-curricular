@@ -66,3 +66,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("codigo").focus();
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnBorrar = document.getElementById('btn-borrar');
+    if (btnBorrar) {
+        btnBorrar.addEventListener('click', () => {
+            if (confirm("¿Estás seguro que quieres borrar todo?")) {
+                localStorage.clear();
+                location.reload();
+            }
+        });
+    }
+});

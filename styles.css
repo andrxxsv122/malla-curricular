@@ -530,3 +530,29 @@ button[type="submit"]:focus-visible {
   background-color: rgba(255, 193, 7, 0.1);
   border-radius: 4px;
 }
+
+#btn-borrar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background-color: #ef4444; /* rojo suave */
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#btn-borrar:hover {
+  background-color: #dc2626; /* rojo más fuerte */
+  transform: scale(1.05);
+}
+
+#btn-borrar:active {
+  transform: scale(0.95);
+}
