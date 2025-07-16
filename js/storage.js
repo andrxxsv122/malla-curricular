@@ -22,6 +22,33 @@ function guardarRamoLS() {
 
 function restaurarRamosLS() {
     const data = JSON.parse(localStorage.getItem('estadoRamos') || '[]');
+
+    const idsSemestres = [...new Set(data.map(r => r.semestreId))]; 
+    
+    idsSemestres.forEach(id => {
+        if (!document.getElementById(id)) {
+            const numero = parseInt(id.split('-')[1]);
+            const nuevoSemestre = document.createElement("div");
+            nuevoSemestre.className = "semestre";
+            nuevoSemestre.id = id;
+            nuevoSemestre.setAttribute("ondrop", "drop(event)");
+            nuevoSemestre.setAttribute("ondragover", "allowDrop(event)");
+            nuevoSemestre.addEventListener("dragleave", (ev) => {
+                ev.currentTarget.classList.remove("drag-over");
+            });
+
+            const titulo = document.createElement("h2");
+            titulo.textContent = `${numero}° Semestre`;
+            nuevoSemestre.appendChild(titulo);
+            document.querySelector(".semestres").appendChild(nuevoSemestre);
+
+            const nuevaOpcion = document.createElement("option");
+            nuevaOpcion.value = numero;
+            nuevaOpcion.textContent = `${numero}° Semestre`;
+            document.getElementById("semestre").appendChild(nuevaOpcion);
+        }
+    });
+
     data.forEach(r => {
         const contenedor = document.getElementById(r.semestreId);
         if (!contenedor) return;
@@ -58,21 +85,11 @@ function restaurarRamosLS() {
             menuAcciones.dataset.ramoId = ramo.dataset.id;
 
             const btnReset = menuAcciones.querySelector('.btn-reset');
-
-            if (ramo.classList.contains('aprobado') || ramo.classList.contains('reprobado') || ramo.classList.contains('cursando')) {
-                btnReset.style.display = "block";
-            } else {
-                btnReset.style.display = "none";
-            }
+            btnReset.style.display = (ramo.classList.contains('aprobado') || ramo.classList.contains('reprobado') || ramo.classList.contains('cursando')) ? "block" : "none";
 
             const otrosRamos = Array.from(document.querySelectorAll('.ramo')).filter(r => r !== ramo);
             const btnPrerrequisito = menuAcciones.querySelector('.btn-prerrequisito');
-
-            if (otrosRamos.length === 0) {
-                btnPrerrequisito.style.display = "none";
-            } else {
-                btnPrerrequisito.style.display = "block";
-            }
+            btnPrerrequisito.style.display = (otrosRamos.length === 0) ? "none" : "block";
 
             menuAcciones.style.position = "fixed";
             menuAcciones.style.left = `${e.clientX}px`;
