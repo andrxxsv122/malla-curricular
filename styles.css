@@ -1,0 +1,532 @@
+/* Fondo y fuentes base */
+html, body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(to bottom right, #dbeafe, #fef9c3);
+  color: #111827;
+  padding: 2rem;
+  overflow-x: hidden;
+}
+
+/* Contenedor general */
+.container {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* Título principal */
+h1 {
+  text-align: center;
+  font-weight: 700;
+  color: #059669;
+  margin-bottom: 2rem;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* Inputs y select */
+input, select {
+  padding: 0.6rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: border 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+input:focus, select:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+input:hover, select:hover {
+  border-color: #56be85; 
+}
+
+/* Botón Agregar */
+button[type="submit"] {
+  background: rgba(255, 255, 255, 0.3);
+  color: #059669;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 12px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: rgba(5, 150, 105, 0.15);
+  transform: scale(1.04);
+}
+
+button[type="submit"]:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 2px;
+}
+
+/* Layout de semestres con grid */
+.semestres {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  scroll-behavior: smooth;
+  scrollbar-width: thin; 
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.semestres::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 4px;
+}
+
+/* Cards de semestre */
+.semestre {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  min-width: 340px;
+  max-width: 340px;
+  flex-shrink: 0;
+  padding: 1.2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.semestre:hover {
+  transform: translateY(-4px);
+}
+
+.semestre h2 {
+  text-align: center;
+  font-weight: 600;
+  color: #059669;
+}
+
+/* Cards de ramos */
+.ramo {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  padding: 0.8rem 1rem;
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  border-left: 5px solid #2563eb;
+  transition: background 0.3s ease, transform 0.2s ease;
+  animation: fadeIn 0.3s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.ramo:hover {
+  background-color: #e0f2fe;
+  transform: scale(1.01);
+}
+
+.ramo span {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.ramo button {
+  background: transparent;
+  border: none;
+  color: #dc2626;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.ramo button:hover {
+  transform: scale(1.25);
+}
+
+.ramo, .contenido-ramo, .semestre {
+  overflow: visible;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.semestre.drag-over {
+  border: 2px dashed #10b981; 
+  background-color: rgba(16, 185, 129, 0.05);
+  border-radius: 20px;
+}
+
+.fab-semestre {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #059669;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.fab-semestre i {
+  font-size: 1.1rem;
+}
+
+.fab-semestre:hover {
+  background-color: #047857;
+  transform: translateY(-2px);
+}
+
+.btn-estado {
+  border: none;
+  background-color: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-estado:hover {
+  background-color: #d6e9ff;
+}
+
+.ramo-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-estado,
+.btn-delete {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px;
+  transition: transform 0.2s ease;
+}
+
+.btn-estado i {
+  color: #888;
+}
+
+.ramo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-left: 6px solid #2563eb;
+  padding: 12px 16px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  position: relative;
+  z-index: 0;
+}
+
+.ramo.z-top {
+  z-index: 999;
+  position: relative;
+}
+
+.ramo:hover {
+  transform: scale(1.02);
+}
+
+.ramo span {
+  flex: 1;
+  font-size: 16px;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* Botones de acción */
+.ramo .acciones {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-estado,
+.btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-estado i,
+.btn-delete i {
+  font-size: 18px;
+}
+
+/* Aprobado */
+.aprobado-btn i {
+  color: #28a745;
+}
+
+.aprobado-btn:hover i {
+  color: #1e7e34;
+  transform: scale(1.2);
+  border-radius: 4px;
+}
+/* Prerrequisito */
+.btn-prerrequisito i {
+  color: #0d6efd; /* Azul Bootstrap */
+}
+
+.btn-prerrequisito:hover i {
+  color: #084298;
+  background-color: rgba(13, 110, 253, 0.1);
+  transform: scale(1.2);
+  border-radius: 4px;
+}
+
+/* Restablecer estado */
+.btn-reset i {
+  color: #6c757d; /* Gris neutro */
+}
+
+.btn-reset:hover i {
+  color: #495057;
+  background-color: rgba(108, 117, 125, 0.1);
+  transform: scale(1.2);
+  border-radius: 4px;
+}
+
+/* Reprobado */
+.reprobado-btn i {
+  color: #dc3545;
+}
+
+.reprobado-btn:hover i {
+  color: #c82333;
+  transform: scale(1.2);
+  border-radius: 4px;
+}
+
+/* Eliminar */
+.btn-delete i {
+  color: #e3342f;
+}
+
+.btn-delete:hover i {
+  color: #bd2130;
+  transform: scale(1.2);
+  background-color: rgba(227, 52, 47, 0.1);
+  border-radius: 4px;
+}
+
+.ramo.aprobado {
+  background-color: #e6ffed;
+  border-left: 6px solid #28a745;
+}
+
+.ramo.reprobado {
+  background-color: #fff5f5;
+  border-left: 6px solid #dc3545;
+}
+.acciones{
+    padding-left: 35px;
+    padding-top: 4px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.lista-checkboxes {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.lista-checkboxes label {
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  word-break: break-word;
+  white-space: normal;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+
+.lista-checkboxes label span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.acciones-modal {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.btn-confirmar,
+.btn-cancelar {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-confirmar {
+  background: #059669;
+  color: white;
+}
+
+.btn-cancelar {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.menu-acciones {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.acciones {
+  position: absolute;
+  z-index: 1000;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  min-width: 150px;
+}
+
+.acciones button {
+  border: none;
+  background: none;
+  padding: 6px 10px;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+}
+
+.acciones button:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.oculto {
+  display: none !important;
+}
+
+#menu-acciones.acciones {
+  position: fixed;
+  z-index: 9999;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+#menu-acciones button {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#menu-acciones button:hover {
+  transform: scale(1.05);
+  background-color: #f0f0f0;
+}
+
+.ramo.animado {
+  animation: dropFadeIn 0.3s ease-out;
+}
+
+@keyframes dropFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ramo.cursando {
+  background-color: #fffbe6;
+  border-left: 6px solid #ffc107;
+}
+.btn-cursando i {
+  color: #ffc107;
+}
+.btn-cursando:hover i {
+  color: #e0a800;
+  transform: scale(1.2);
+  background-color: rgba(255, 193, 7, 0.1);
+  border-radius: 4px;
+}

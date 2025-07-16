@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Malla Curricular</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="js/domUtils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/menuAcciones.js"></script>
+    <script src="js/dragDrop.js"></script>
+    <script src="js/semestres.js"></script>
+    <script src="js/formulario.js"></script>
+    <script src="js/init.js"></script>
+    <link rel="icon" type="image/x-icon" href="ico/favicon.ico" />
+</head>
+
+<body>
+    <div class="container">
+        <h1 contenteditable="true" id="titulo-malla" spellcheck="false" title="Haz clic para editar">
+            Malla Curricular Personalizada
+        </h1>
+        <form id="formulario">
+            <input type="text" id="codigo" placeholder="Código del ramo" />
+            <input type="text" id="nombre" placeholder="Nombre del ramo" required />
+            <select id="semestre" required>
+                <option value="">Selecciona semestre</option>
+                <option value="1">1° Semestre</option>
+                <option value="2">2° Semestre</option>
+                <option value="3">3° Semestre</option>
+                <option value="4">4° Semestre</option>
+            </select>
+            <button type="submit"><i class="fas fa-plus"></i> Agregar</button>
+            <button onclick="localStorage.clear(); location.reload();" style="position:fixed; top:20px; right:20px; z-index:9999;">🗑 Borrar todo</button>
+        </form>
+
+<div class="contenedor-scroll-wrapper">
+        <div class="contenedor-scroll">
+            <div class="semestres">
+                <div class="semestre" id="semestre-1" ondragover="allowDrop(event)" ondrop="drop(event)">
+                    <h2>1° Semestre</h2>
+                </div>
+                <div class="semestre" id="semestre-2" ondragover="allowDrop(event)" ondrop="drop(event)">
+                    <h2>2° Semestre</h2>
+                </div>
+                <div class="semestre" id="semestre-3" ondragover="allowDrop(event)" ondrop="drop(event)">
+                    <h2>3° Semestre</h2>
+                </div>
+                <div class="semestre" id="semestre-4" ondragover="allowDrop(event)" ondrop="drop(event)">
+                    <h2>4° Semestre</h2>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="agregar-semestre-centrado">
+            <button class="fab-semestre" id="fabAgregarSemestre">
+                <i class="fas fa-book-open"></i>
+                <span>Agregar semestre</span>
+            </button>
+        </div>
+    </div>
+    <div id="modal-prerrequisitos" class="modal hidden">
+        <div class="modal-content">
+            <h3>Selecciona los prerrequisitos</h3>
+            <div class="lista-checkboxes" id="lista-prerrequisitos"></div>
+            <div class="acciones-modal">
+                <button id="confirmarPrerrequisitos" class="btn-confirmar">Confirmar</button>
+                <button id="cancelarPrerrequisitos" class="btn-cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div id="menu-acciones" class="acciones oculto">
+        <button class="btn-cursando"><i class="fas fa-spinner"></i> Cursando</button>
+        <button class="btn-estado aprobado-btn"><i class="fas fa-check-circle"></i> Aprobar</button>
+        <button class="btn-estado reprobado-btn"><i class="fas fa-times-circle"></i> Reprobar</button>
+        <button class="btn-prerrequisito"><i class="fas fa-link"></i> Prerrequisitos</button>
+        <button class="btn-reset"><i class="fas fa-undo"></i> Restablecer estado</button>
+        <button class="btn-delete"><i class="fas fa-trash-alt"></i> Eliminar</button>
+    </div>
+    </body>
+</html>
