@@ -1,29 +1,22 @@
-# Malla Curricular Interactiva 🎓
+# Malla Curricular Interactiva – Ingeniería de Alimentos
 
-Este proyecto permite al usuario crear y personalizar una malla curricular de forma visual e interactiva.
+Este proyecto muestra la malla curricular del programa profesional en Ingeniería de Alimentos con filtros y contador dinámico de créditos.
 
-## ✨ Funcionalidades
+## Cómo publicar en GitHub Pages
 
-- Agregar ramos por semestre
-- Editar nombre de la malla
-- Guardado automático en el navegador (localStorage)
-- Menú de acciones para cambiar el estado de cada ramo (cursando, aprobado, reprobado)
-- Interfaz responsiva y moderna
+1. Crea un repositorio en GitHub.
+2. Sube `index.html` (este archivo).
+3. Ve a **Settings → Pages**.
+4. En "Build and deployment" selecciona:
+   - **Source:** Deploy from a branch
+   - **Branch:** main
+   - **Folder:** /(root)
+5. Guarda y espera unos minutos.
+6. Tu sitio estará disponible en: `https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/`.
 
-## 🚀 Cómo usar
+## Características
+- Filtros por periodo, campo, tipo y línea.
+- Buscador global.
+- Colores por campo: IBC (azul), AIU (verde), Disciplinar (amarillo), Complementaria (rojo).
+- Contador dinámico de créditos.
 
-1. Abre el sitio web en el navegador
-2. Haz clic en "Agregar ramo" o "Agregar semestre"
-3. Personaliza el nombre de la malla
-4. Usa el menú de acciones con clic derecho sobre cada ramo
-
-## 🛠️ Tecnologías
-
-- HTML5
-- CSS3
-- JavaScript puro (sin frameworks)
-- Render para despliegue
-
-## 📦 Autor
-
-Desarrollado por [Bastián Spuler](https://github.com/bastianspuler)
