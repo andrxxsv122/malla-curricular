@@ -558,14 +558,27 @@ button[type="submit"]:focus-visible {
 }
 
 .export-import-buttons button {
-  background-color: #f3f4f6;
-  border: none;
-  padding: 0.5rem 0.8rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: rgba(255, 255, 255, 0.3);
+  color: #1f2937;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
+
+.export-import-buttons button i {
+  font-size: 1rem;
+  color: #2563eb;
+}
+
 .export-import-buttons button:hover {
-  background-color: #e5e7eb;
+  background: rgba(37, 99, 235, 0.1);
+  transform: scale(1.04);
 }

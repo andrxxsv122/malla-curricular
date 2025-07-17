@@ -9,15 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const contenedor = document.getElementById(`semestre-${semestre}`);
         const ramo = document.createElement("div");
 
-        if (!nombre) {
-            alert("Por favor ingresa el nombre del ramo.");
-            return;
-        }
+        // if (!nombre) {
+        //     alert("Por favor ingresa el nombre del ramo.");
+        //     return;
+        // }
 
-        if (!semestre) {
-            alert("Por favor selecciona un semestre.");
-            return;
-        }
+        // if (!semestre) {
+        //     alert("Por favor selecciona un semestre.");
+        //     return;
+        // }
 
         ramo.className = "ramo";
         ramo.draggable = true;
