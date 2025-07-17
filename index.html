@@ -15,6 +15,7 @@
     <script src="js/dragDrop.js"></script>
     <script src="js/semestres.js"></script>
     <script src="js/formulario.js"></script>
+    <script src="js/exportImport.js"></script>
     <script src="js/init.js"></script>
     <link rel="icon" type="image/x-icon" href="ico/favicon.ico" />
 </head>
@@ -24,7 +25,7 @@
         <h1 contenteditable="true" id="titulo-malla" spellcheck="false" title="Haz clic para editar">
             Malla Curricular Personalizada
         </h1>
-        <form id="formulario">
+        <form id="formulario" novalidate>
             <input type="text" id="codigo" placeholder="Código del ramo" />
             <input type="text" id="nombre" placeholder="Nombre del ramo" required />
             <select id="semestre" required>
@@ -36,6 +37,11 @@
             </select>
             <button type="submit"><i class="fas fa-plus"></i> Agregar</button>
             <button id="btn-borrar" title="Borrar todo">🗑</button>
+            <div class="export-import-buttons" style="position:fixed; top:20px; left:20px; z-index:9999; display:flex; gap:10px;">
+                <button id="btn-exportar" class="btn-accion">📤 Exportar</button>
+                <button id="btn-importar" class="btn-accion">📥 Importar</button>
+                <input type="file" id="input-importar" accept=".json" style="display: none;">
+            </div>
         </form>
 
 <div class="contenedor-scroll-wrapper">
