@@ -1,30 +1,7 @@
-function guardarRamoLS() {
-    const ramos = Array.from(document.querySelectorAll('.ramo')).map(ramo => ({
-        id: ramo.dataset.id,
-        codigo: ramo.dataset.codigo,
-        nombre: (() => {
-            const span = ramo.querySelector('span');
-            if (!span) return '';
-            const html = span.innerHTML;
-            const partes = html.split('<br>');
-            return partes.length > 1 ? partes[1].trim() : span.textContent.trim();
-        })(),
-        
-        semestreId: ramo.closest('.semestre')?.id || '',
-        estado: ramo.classList.contains('aprobado') ? 'aprobado'
-            : ramo.classList.contains('reprobado') ? 'reprobado'
-                : ramo.classList.contains('cursando') ? 'cursando'
-                    : '',
-        prerrequisitos: ramo.dataset.prerrequisitos || ''
-    }));
-    localStorage.setItem('estadoRamos', JSON.stringify(ramos));
-}
-
-
 function restaurarRamosLS() {
     const data = JSON.parse(localStorage.getItem('estadoRamos') || '[]');
 
-    const idsSemestres = [...new Set(data.map(r => r.semestreId))]; 
+    const idsSemestres = [...new Set(data.map(r => r.semestreId))];
     
     idsSemestres.forEach(id => {
         if (!document.getElementById(id)) {
@@ -98,4 +75,30 @@ function restaurarRamosLS() {
             menuAcciones.classList.remove("oculto");
         });
     });
+}
+
+function guardarRamoLS() {
+    const ramos = [];
+
+    document.querySelectorAll(".semestre").forEach(semestre => {
+        const semestreId = semestre.id;
+
+        semestre.querySelectorAll(".ramo").forEach(ramo => {
+            ramos.push({
+                id: ramo.dataset.id,
+                nombre: (() => {
+                    const span = ramo.querySelector(".ramo-info span");
+                    if (!span) return "";
+                    const partes = span.innerHTML.split("<br>");
+                    return partes[1]?.trim() || "";
+                })(),
+                codigo: ramo.dataset.codigo,
+                semestreId,
+                prerrequisitos: ramo.dataset.prerrequisitos || '',
+                estado: ramo.classList.contains('aprobado') ? 'aprobado' : ramo.classList.contains('reprobado') ? 'reprobado' : ramo.classList.contains('cursando') ? 'cursando' : ''
+            });
+        });
+    });
+
+    localStorage.setItem("estadoRamos", JSON.stringify(ramos));
 }
