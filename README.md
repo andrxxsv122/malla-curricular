@@ -26,4 +26,4 @@ Este proyecto permite al usuario crear y personalizar una malla curricular de fo
 
 ## 📦 Autor
 
-Desarrollado por [Bastián Spuler](https://github.com/bastianspuler)
+Desarrollado por [Bastián Spuler](https://github.com/andrxxsv122)
